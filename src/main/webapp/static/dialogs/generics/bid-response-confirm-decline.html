@@ -1,0 +1,26 @@
+<div data-reveal id="reveal-bid-response-confirm-decline" class="medium reveal-modal">
+    <a class="close-reveal-modal">&#215;</a>
+    <form name="bidResponseDeclineForm" novalidate>
+        <header><h3>Ablehnen bestätigen</h3></header>
+        <char-counter
+                class="question-counter"
+                value="data.declineComment"
+                limit="160"
+                component="decline-comment"
+                form="bidResponseDeclineForm"></char-counter>
+        <textarea
+                id="decline-comment"
+                placeholder="Hier können Sie einen optionalen Kommentar verfassen, welcher nur {{ data.bidRequestItem.actorName }} sieht."
+                ng-model="data.declineComment"></textarea>
+
+        <ul class="button-group">
+            <li><a class="button"  ng-show="bidRequestUpdateIsNeeded"
+                   ng-click="backToModalResponseAndUpdate()">Angebot aktualisieren</a></li>
+            <li><button class="alert button" ng-hide="bidRequestUpdateIsNeeded"
+                        ng-disabled="bidResponseDeclineForm.$invalid"
+                        ng-click="declineBidRequest()">Bestätigen</button></li>
+            <li><a class="button"
+                   data-reveal-id="{{ goBackDialogId }}">Zurück</a></li>
+        </ul>
+    </form>
+</div>

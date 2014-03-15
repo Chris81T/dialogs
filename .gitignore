@@ -1,0 +1,40 @@
+# generic files to ignore
+# backup files (*~) and vim swap file (.swp), MacOS dir file (.DS_Store)
+# also ignore IntelliJ IDEA scala worksheet files (.sc)
+*.~
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.iml
+*.sc
+
+#IDE files to ignore (Netbeans, Eclipse)
+nbproject/private/
+.classpath
+.project
+.settings
+.metadata
+.idea
+additional-libraries
+profiles.xml
+
+#ignore generated .class files
+*.class
+
+#except this file
+!.gitignore
+
+#ignore maven target output
+target/
+
+#ignore may existing bin folder
+bin/
+
+#ignore system properties file
+config/zmw_system.properties
+
+#ignore JRebel typical files
+rebel.xml
+

@@ -1,0 +1,45 @@
+<div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Der aktuelle Preis liegt bei <price-updater price-label="data.currentPrice"></price-updater></label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-3 columns">
+            <label><strong>Ihr Angebot</strong></label>
+        </div>
+        <div class="large-7 columns">
+            <div class="row collapse">
+                <div class="large-10 small-11 columns">
+                    <input type="text" placeholder="Geben Sie hier ihren Betrag ein" ng-model="data.details.price"
+                           ng-pattern="/^\d+([,.]\d{2})?$/" required/>
+                </div>
+                <div class="large-2 small-1 columns">
+                    <span class="postfix">€</span>
+                </div>
+            </div>
+        </div>
+        <div class="large-2 columns">
+            <button class="tiny button" ng-disabled="!showBidHistoryPossible()" ng-click="showBidHistory()">Verlauf</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <char-counter
+                    class="comment-counter"
+                    value="data.details.comment"
+                    limit="160"
+                    component="comment"
+                    form="bidRequestForm"></char-counter>
+            <textarea id="comment" placeholder="Hier können Sie einen Kommentar verfassen" ng-model="data.details.comment"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <label class="error" ng-show="convertPrice(data.details.price) > data.currentPrice">Ihr Angebot ist höher als der aktuelle Preis von
+            {{ data.currentPrice.formatPrice('€') }}! Bitte bestätigen Sie, wenn Sie fortfahren möchten.</label>
+    </div>
+
+</div>

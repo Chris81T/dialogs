@@ -1,0 +1,12 @@
+<div data-reveal id="reveal-bid-response-confirm-accept" class="medium reveal-modal">
+    <a class="close-reveal-modal">&#215;</a>
+    <header><h3>Annehmen bestätigen</h3></header>
+
+    <ul class="button-group">
+        <li><a class="button" ng-show="bidRequestUpdateIsNeeded"
+               ng-click="backToModalResponseAndUpdate()">Angebot aktualisieren</a></li>
+        <li><button class="success button" ng-hide="bidRequestUpdateIsNeeded"
+                    ng-click="acceptBidRequest()">Bestätigen</button></li>
+        <li><a class="button" data-reveal-id="{{ goBackDialogId }}">Zurück</a></li>
+    </ul>
+</div>

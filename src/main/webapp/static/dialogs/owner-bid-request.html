@@ -1,0 +1,28 @@
+<div data-reveal id="reveal-owner-bid-request" class="medium reveal-modal">
+    <a data-reveal class="close-reveal-modal">&#215;</a>
+    <header><h3>Ein Gebot an {{ recipientName }} machen</h3></header>
+    <!-- NOTE do not rename the form name. Is also used in the inner bid template above -->
+    <form name="bidRequestForm" novalidate>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <wipe-box
+                        template="/static/wipebox/owner-bid-request.html"
+                        logic="followerLogic(scope)"
+                        items="followerDetails"
+                        custom-class="owner-bid-request"></wipe-box>
+
+                <small class="error" ng-show="bidRequestForm.$error.noRecipientSelected">
+                    Wählen Sie einen Interessenten aus.
+                </small>
+            </div>
+        </div>
+
+        <div ng-include="'/static/dialogs/generics/bid-request.html'"></div>
+
+        <ul class="button-group">
+            <li><button class="button" ng-disabled="bidRequestForm.$invalid" ng-click="ownerBidRequest()">Absenden</button></li>
+            <li><button class="button" ng-click="cancelOwnerBidRequest()">Abbrechen</button></li>
+        </ul>
+    </form>
+</div>

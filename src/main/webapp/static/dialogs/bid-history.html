@@ -1,0 +1,19 @@
+<div data-reveal id="reveal-bid-history" class="small reveal-modal">
+    <a class="close-reveal-modal">&#215;</a>
+    <header><h3>Gebotsverlauf</h3></header>
+
+    <div ng-if="items.length > 0" class="row">
+        <wipe-box template="/static/wipebox/bid-history.html"
+                  logic="bidHistoryLogic(scope)"
+                  items="items"
+                  vertical="true"
+                  custom-class="bid-history">
+        </wipe-box>
+    </div>
+    <div ng-if="items.length == 0" class="row">
+        <div class="large-12 columns">
+            <div class="panel">Sie haben hier noch nicht verhandelt. Eröffnen Sie die Verhandlungen mit einem ersten Gebot.</div>
+        </div>
+        <button class="medium button" ng-click="cancelBidHistory()">Schließen</button>
+    </div>
+</div>

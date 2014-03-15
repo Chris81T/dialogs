@@ -1,0 +1,18 @@
+<div data-reveal id="reveal-message-to-visitors" class="medium reveal-modal">
+    <a data-reveal class="close-reveal-modal">&#215;</a>
+    <header><h3>Eine Nachricht schreiben</h3></header>
+    <form name="messageToVisitorsForm" novalidate>
+        <char-counter
+                class="message-counter"
+                value="data.message"
+                limit="160"
+                component="visitors-message"
+                form="messageToVisitorsForm"
+                min-signs="1"></char-counter>
+        <textarea id="visitors-message" placeholder="Hier können Sie eine Nachricht für Besucher verfassen" ng-model="data.message"></textarea>
+        <ul class="button-group">
+            <li><button class="button" ng-disabled="messageToVisitorsForm.$invalid" ng-click="messageToVisitors()">Absenden</button></li>
+            <li><button class="button" ng-click="cancelMessageToVisitors()">Abbrechen</button></li>
+        </ul>
+    </form>
+</div>

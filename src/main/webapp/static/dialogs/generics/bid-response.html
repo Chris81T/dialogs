@@ -1,0 +1,24 @@
+<div>
+
+    <div>
+        <small>{{ data.bidRequestItem.actorName}} hat ein Angebot <fuzzy-timer interval="30000" timestamp="data.bidRequestItem.timestamp"></fuzzy-timer> gemacht</small>
+
+        <div class="row">
+            <strong>{{ data.bidRequestItem.price.formatPrice('€') }}</strong>
+        </div>
+
+        <label>Kommentar</label>
+        <p>{{ data.bidRequestItem.comment }}</p>
+
+    </div>
+    <ul class="button-group">
+        <li><button class="button" ng-show="bidRequestUpdateIsNeeded"
+                    ng-click="updateBidRequest()">Angebot aktualisieren</button></li>
+        <li><a class="success button" ng-hide="bidRequestUpdateIsNeeded"
+               data-reveal-id="reveal-bid-response-confirm-accept">Annehmen</a></li>
+        <li><a class="alert button" ng-hide="bidRequestUpdateIsNeeded"
+               data-reveal-id="reveal-bid-response-confirm-decline">Ablehnen</a></li>
+        <li><button class="button" ng-click="cancelBidResponse()">Abbrechen</button></li>
+    </ul>
+
+</div>

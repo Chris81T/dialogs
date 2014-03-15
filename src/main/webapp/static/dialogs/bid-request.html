@@ -1,0 +1,114 @@
+<div>
+    <div data-reveal id="reveal-bid-request" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Ein Angebot machen</h3></header>
+        <form name="bidRequestForm" novalidate>
+
+            <div ng-include="'/static/dialogs/generics/bid-request.html'"></div>
+
+            <div class="row">
+                <label class="error" ng-show="convertPrice(data.details.price) > data.currentPrice">Ihr Angebot ist höher als der aktuelle Preis von
+                    {{ data.currentPrice.formatPrice('€') }}! Bitte bestätigen Sie, wenn Sie fortfahren möchten.</label>
+            </div>
+            <div class="row">
+                <ul class="button-group">
+                    <!-- ng-show="convertPrice(data.details.price) <= data.currentPrice" -->
+                    <li><button class="button" ng-disabled="bidRequestForm.$invalid"
+                                ng-click="bidRequest()">Absenden</button></li>
+                    <li><confirm-button ng-show="convertPrice(data.details.price) > data.currentPrice" ng-disabled="bidRequestForm.$invalid"
+                                        label="Absenden"
+                                        execute="bidRequest()"
+                                        class="medium"></confirm-button>
+                    </li>
+                    <li><a class="button" ng-disabled="bidRequestForm.$invalid" data-reveal-id="reveal-bid-hot-deal">Hot Deal!</a></li>
+                    <li><button class="button" ng-click="cancelBidRequest()">Abbrechen</button></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+    <div data-reveal id="reveal-bid-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Hot Deal!</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Mit einem Hot Deal! macht man dem Anbieter sein letztes Angebot. Wenn dieser das Angebot
+                    einsieht, bleiben ihm 60 Sekunden Bedenkzeit, um es anzunehmen. Kommt es nicht zum Hot Deal!,
+                    interessieren Sie sich automatisch danach nicht mehr für {{ data.propName }}.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="button-group">
+                <li><button class="button" ng-disabled="!data.details.price" ng-click="hotDeal()">Bestätigen</button></li>
+                <li><a class="button" data-reveal-id="reveal-bid-request">Zurück</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-reveal id="reveal-bid-request-not-possible-active-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Ein Angebot machen</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Momentan können Sie keine weiteren Gebote abgeben, da Sie einen Hot Deal! abgesendet haben, welcher
+                    bisher noch nicht von {{ data.ownerName }} angesehen wurde. Falls Sie keine Reaktion auf Ihr Gebot erhalten sollten,
+                    haben Sie die Möglichkeit Ihren Hot Deal! zurück zu ziehen. Dazu finden Sie zu Ihren Gebotsangaben
+                    die Option <strong>Zurückziehen</strong> oder können direkt hier Ihren Hot Deal! zurückziehen.
+                    <br />
+                    <confirm-button
+                            label="Hot Deal! zurückziehen"
+                            execute="hotDealRetreat()"
+                            undo="hotDealRetreatNotPerformed()"></confirm-button>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button" ng-click="cancelBidRequest()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <div data-reveal id="reveal-bid-request-not-possible-finished-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Ein Angebot machen</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Im Moment können Sie keine weiteren Gebote abgeben, da Sie einen Hot Deal! abgesendet haben,
+                    welcher von {{ data.ownerName }} abgelehnt wurde oder keine Reaktion darauf gab. Sie haben laut den
+                    Hot Deal Spielregeln [[ hier nochmal Verweis zum Dialog rein ??!! - zum Nachlesen der Regeln ]] aktuell
+                    nicht die Möglichkeit, ein Gebot abzugeben.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button" ng-click="cancelBidRequest()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <div data-reveal id="reveal-bid-request-not-possible-running-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Eine Frage stellen</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Im Moment können Sie keine weiteren Gebote abgeben, da Sie einen Hot Deal! abgesendet haben,
+                    welcher von {{ data.ownerName }} aktuell betrachtet wird. Den weiteren Verlauf können Sie bei Ihren
+                    persönlichen Einträgen verfolgen.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button" ng-click="cancelAskQuestion()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+</div>

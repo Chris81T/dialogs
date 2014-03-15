@@ -1,0 +1,27 @@
+<div data-reveal id="reveal-answer-question" class="medium reveal-modal">
+    <a class="close-reveal-modal">&#215;</a>
+    <header><h3>Eine Frage beantworten</h3></header>
+    <div>
+        <small>{{data.questionItem.actorName}} hat eine Frage <fuzzy-timer interval="30000" timestamp="data.questionItem.timestamp"></fuzzy-timer> gestellt</small>
+        <p>{{data.questionItem.message}}</p>
+    </div>
+    <form name="answerQuestionForm" novalidate>
+        <char-counter
+                class="answer-counter"
+                value="data.message"
+                limit="160"
+                component="reveal-answer"
+                form="answerQuestionForm"
+                min-signs="1"></char-counter>
+        <textarea id="reveal-answer" placeholder="Hier können Sie die Frage beantworten" ng-model="data.message"></textarea>
+        <ul class="button-group">
+            <li><button
+                    class="button"
+                    ng-disabled="answerQuestionForm.$invalid"
+                    ng-click="answerQuestion()">Absenden</button></li>
+            <li><button
+                    class="button"
+                    ng-click="cancelAnswerQuestion()">Abbrechen</button></li>
+        </ul>
+    </form>
+</div>

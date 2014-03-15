@@ -1,0 +1,59 @@
+<div>
+    <div data-reveal id="reveal-ask-question" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Eine Frage stellen</h3></header>
+        <form name="askQuestionForm" novalidate>
+            <char-counter
+                    class="question-counter"
+                    value="data.question"
+                    limit="160"
+                    component="question"
+                    form="askQuestionForm"
+                    min-signs="1"></char-counter>
+            <textarea id="question" placeholder="Hier können Sie eine Frage stellen, welche öffentlich einsehbar ist" ng-model="data.question"></textarea>
+            <ul class="button-group">
+                <li><button class="button" ng-disabled="askQuestionForm.$invalid" ng-click="askQuestion()">Absenden</button></li>
+                <li><button class="button" ng-click="cancelAskQuestion()">Abbrechen</button></li>
+            </ul>
+        </form>
+    </div>
+
+    <div data-reveal id="reveal-ask-question-not-possible-finished-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Eine Frage stellen</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Im Moment können Sie keine weiteren Fragen stellen, da Sie einen Hot Deal! abgesendet haben,
+                    welcher von {{ data.ownerName }} abgelehnt wurde oder keine Reaktion darauf gab. Sie haben laut den
+                    Hot Deal Spielregeln [[ hier nochmal Verweis zum Dialog rein ??!! - zum Nachlesen der Regeln ]] aktuell
+                    nicht die Möglichkeit, ein Gebot abzugeben.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button" ng-click="cancelAskQuestion()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <div data-reveal id="reveal-ask-question-not-possible-running-hot-deal" class="medium reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+        <header><h3>Eine Frage stellen</h3></header>
+        <div class="row">
+            <div class="panel">
+                <p>
+                    Im Moment können Sie keine weiteren Gebote abgeben, da Sie einen Hot Deal! abgesendet haben,
+                    welcher von {{ data.ownerName }} aktuell betrachtet wird. Den weiteren Verlauf können Sie bei Ihren
+                    persönlichen Einträgen verfolgen.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button" ng-click="cancelAskQuestion()">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
